@@ -10,7 +10,7 @@ startParsing.command('startBot', async (ctx) => {
     const { check, coronaPrice } = await coronaPriceCheck(coronaPricePrev)
     coronaPricePrev = coronaPrice
 
-    // if (!check) return
+    if (!check) return
 
     const garantexPrice = await getGarantexPrice()
     const exceeds = differanceCalculations(coronaPrice, garantexPrice, percentage)
