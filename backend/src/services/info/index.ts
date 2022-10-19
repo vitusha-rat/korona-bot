@@ -32,7 +32,7 @@ export const getJWT = async () => {
   }
 }
 
-export const getLastTrades = async () => {
+export const getGarantexPrice = async () => {
   const jwt = await getJWT()
 
   try {
@@ -75,7 +75,7 @@ export const getCoronaPrice = async () => {
       },
     })
     console.log(data)
-    return data
+    return data[0] as { exchangeRate: number }
   } catch (e) {
     console.error(e)
   }

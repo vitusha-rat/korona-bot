@@ -1,21 +1,14 @@
-import composer from '.'
+import { getCoronaPrice, getGarantexPrice } from '@/services/info'
+import { Composer } from 'grammy'
 
-import { createLoading } from '@/utils'
+export const startParsing = new Composer()
 
-import { getLastTrades, getCoronaPrice } from '@/services/info'
-
-console.log('info')
-
-// `info` - prints out info about asser for last 24 hours
-composer.command('info', async (ctx) => {
-  console.log('info handler')
-
-  const answer = await createLoading(ctx)
-  const ans = await getLastTrades()
-  const a = await getCoronaPrice()
-
-  await answer(`${ans}
-${a[0].exchangeRate}`)
-
-  console.log('done')
+startParsing.command('startBot', async (ctx) => {
+  setInterval(async () => {
+    const coronaPrice = await getCoronaPrice()
+    const garantexPrice = await getGarantexPrice()
+    ctx.reply(
+      `Corona Price: ${coronaPrice?.exchangeRate}, Garantex Price: ${garantexPrice}`
+    )
+  }, 5000)
 })

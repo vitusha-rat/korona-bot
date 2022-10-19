@@ -4,12 +4,23 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 import { bot } from '@/init'
+import { session } from 'grammy'
+import { conversations, createConversation } from '@grammyjs/conversations'
+import { setNumber } from '@/conversations/setNumberCons'
+import { startParsing } from './commands/info'
 
-import commandComposer from '@/commands'
+bot.use(session({ initial: () => ({}) }))
+bot.use(conversations())
+bot.use(createConversation(setNumber))
 
-bot.use(commandComposer)
+bot.command('setNumber', async (ctx) => {
+  await ctx.reply('Write down new number!')
+  await ctx.conversation.enter('setNumber')
+})
+
+bot.use(startParsing)
 
 if (!process.env.TEST) {
-  bot.launch()
+  bot.start()
   console.log('Bot launched')
 }
