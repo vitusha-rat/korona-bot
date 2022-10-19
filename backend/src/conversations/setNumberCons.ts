@@ -9,14 +9,14 @@ import {
 type MyContext = Context & ConversationFlavor
 type MyConversation = Conversation<MyContext>
 
-let number = 0
+export let percentage = 0
 /** Defines the conversation */
 export async function setNumber(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply('Hi there! Enter new number!')
   const { message } = await conversation.wait()
   if (!message?.text) return
-  console.log(number, 'before')
-  number = Number(message.text)
-  console.log(number, 'after')
+  console.log(percentage, 'before')
+  percentage = Number(message.text)
+  console.log(percentage, 'after')
   await ctx.reply('Cool new number!')
 }
