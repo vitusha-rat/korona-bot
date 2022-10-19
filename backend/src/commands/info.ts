@@ -2,6 +2,8 @@ import composer from '.'
 
 import { createLoading } from '@/utils'
 
+import { getLastTrades, getCoronaPrice } from '@/services/info'
+
 const WHITELIST = [2073130256, 256640207, 182301431, 869727093]
 
 console.log('info')
@@ -14,8 +16,11 @@ composer.command('info', async (ctx) => {
     return
   }
   const answer = await createLoading(ctx)
+  const ans = await getLastTrades()
+  const a = await getCoronaPrice()
 
-  await answer('Hello')
+  await answer(`${ans}
+${a[0].exchangeRate}`)
 
   console.log('done')
 })
