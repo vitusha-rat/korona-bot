@@ -1,0 +1,14 @@
+{
+  "name": "dapp-monorepo",
+  "private": true,
+  "scripts": {
+    "contracts": "yarn workspace contracts",
+    "frontend": "yarn workspace frontend",
+    "backend": "yarn workspace backend"
+  },
+  "workspaces": [
+    "./contracts",
+    "./frontend",
+    "./backend"
+  ]
+}

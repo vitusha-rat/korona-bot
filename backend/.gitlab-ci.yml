@@ -1,0 +1,16 @@
+stages:
+  - test
+  - build
+
+# variables:
+#   SKIP_COMPONENTS_TEST: 'true'
+#   SKIP_BUILD_TEST: 'true'
+#   SKIP_TYPECHECK_TEST: 'true'
+
+include:
+  - project: 'bc/pepega-team/cicd-utils'
+    ref: 'main'
+    file: 'gitlabci/test/backend/.gitlab-ci.yml'
+  - project: 'bc/pepega-team/cicd-utils'
+    ref: 'main'
+    file: 'gitlabci/build/backend/.gitlab-ci.yml'

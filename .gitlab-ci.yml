@@ -1,0 +1,11 @@
+variables:
+  PROJECT_NAME: tg-stats-bot
+
+stages:
+  - backend
+
+backend:
+  stage: backend
+  trigger:
+    include: $BACKEND_DIR/.gitlab-ci.yml
+    strategy: depend
